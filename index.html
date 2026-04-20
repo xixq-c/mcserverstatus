@@ -1,1 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Server Status</title>
+</head>
+<body>
+    <h1>Status "The Glarpers"</h1>
+    <div id="status">Checking status...</div>
 
+    <script>
+        // Replace 'PLAY.YOURSERVER.COM' with your actual IP
+        fetch('https://api.mcsrvstat.us/2/theglarpers.my.pebble.host')
+            .then(response => response.json())
+            .then(data => {
+                const statusDiv = document.getElementById('status');
+                if (data.online) {
+                    statusDiv.innerHTML = "✅ Server Online! Aanstal Spelers: " + data.players.online;
+                    statusDiv.style.color = "green";
+                } else {
+                    statusDiv.innerHTML = "❌ Server Offline";
+                    statusDiv.style.color = "red";
+                }
+            });
+    </script>
+</body>
+</html>
